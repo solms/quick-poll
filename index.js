@@ -37,6 +37,18 @@ function verifyCredentials(username, password, done) {
 	}
 };
 
+// Serialize and deserialize for passport
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+	// TODO: Query the DB to get user details
+	done(null, {
+		id: id,
+		name: id
+	});
+});
+
 // Set up the routes
 app.get('/', function(req, res) {
 	res.render('index', {
@@ -47,6 +59,14 @@ app.get('/', function(req, res) {
 
 app.get('/login', function(req, res) {
 	res.render('login');
+});
+app.post('/login', passport.authenticate('local'), function(req, res) {
+	res.redirect('/');
+});
+
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
 });
 
 app.get('/signup', function(req, res) {
