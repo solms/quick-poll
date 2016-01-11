@@ -1,1 +1,15 @@
-<h3>Hello there!</h3>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quick-Poll</title>
+</head>
+<body>
+	<h1>Quick-Poll</h1>
+	<% if (!isAuthenticated) { %>
+		<h3>You are not logged in.</h3>
+		<p>Please <a href="/login">log in</a> or <a href="/signup">sign up</a>.</p>
+	<% } else { %>
+		<h3>Hi, <%= user.name %>.</h3>
+	<% } %>
+</body>
+</html>

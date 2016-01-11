@@ -39,7 +39,10 @@ function verifyCredentials(username, password, done) {
 
 // Set up the routes
 app.get('/', function(req, res) {
-	res.render('index');
+	res.render('index', {
+		isAuthenticated: req.isAuthenticated(),
+		user: req.user
+	});
 })
 
 // Set the port
