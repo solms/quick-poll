@@ -1,4 +1,7 @@
-module.exports = function(app, passport) {
+module.exports = function(app, passport, db) {
+	var UserController = require(process.cwd() + '/controllers/userController.js');
+	var userController = new UserController(db);
+
 	app.get('/', function(req, res) {
 		res.render('index', {
 			isAuthenticated: req.isAuthenticated(),
@@ -21,4 +24,5 @@ module.exports = function(app, passport) {
 	app.get('/signup', function(req, res) {
 		res.render('signup');
 	});
+	app.post('/signup', userController.signUp);
 };
