@@ -2,9 +2,17 @@
 <html>
 <head>
 	<title>Quick-Poll</title>
+	<!-- Import Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Import cutom CSS -->
+	<link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
-	<h1>Quick-Poll</h1>
+	<div id="heading-banner">
+		<h1><b>Quick-Poll<b></h1>
+		<p>The simplest way to gather opinions.</p>
+	</div>
+
 	<% if (!isAuthenticated) { %>
 		<h3>You are not logged in.</h3>
 		<p>Please <a href="/login">log in</a> or <a href="/signup">sign up</a>.</p>
