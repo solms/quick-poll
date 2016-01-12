@@ -9,6 +9,11 @@ body {
 	margin-bottom: 15px;
 }
 
+#heading-banner a {
+	text-decoration: none;
+	color: white;
+}
+
 #sign-up-form {
 
 }
