@@ -11,11 +11,11 @@ module.exports = function(db) {
 				if(err) {
 					console.log('ERROR!');
 					console.log(err);
-				} else {
-					if(doc_arr.length == 0){
+				} else { // Check if the username exists
+					if(doc_arr.length == 0){ // The username is free
 						users.update(user, user, { upsert: true });
 						res.redirect('/');
-					} else {
+					} else { // The username is taken
 						console.log('Username taken.');
 						res.redirect('/signup');
 					}

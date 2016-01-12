@@ -15,7 +15,7 @@ mongo.connect(db_addr, function(err, db) {
 		console.log('ERROR: Could not connect to the database at ' + db_addr);
 	} else {
 		console.log('Successfully connected to the database at ' + db_addr);
-		
+
 		// Start the app
 		var app = express();
 		app.set('view engine', 'ejs');
@@ -34,17 +34,27 @@ mongo.connect(db_addr, function(err, db) {
 		app.use(passport.session());
 		passport.use(new passportLocal.Strategy(verifyCredentials));
 		function verifyCredentials(username, password, done) {
-			// TODO: Read from DB!
-			if (username === password){
-				// No errors, data == authenticated
-				done(null, {
-					id: username,
-					name: username
-				});
-			} else {
-				// No errors, no data == Not authenticated
-				done(null, null);
-			}
+			// Check if username and password match document in the DB
+			db.collection('users').find({
+				username: username,
+				password: password
+			}).toArray(function(err, data) {
+				if(err) {
+					console.log('ERROR!');
+					console.log(err);
+				} else {
+					if(data.length == 0){
+						console.log('Username and password do not match a document.');
+						done(null, null);
+					} else {
+						console.log(data);
+						done(null, {
+							id: data[0]._id,
+							name: data[0].username
+						})
+					}
+				}
+			});
 		};
 
 		// Serialize and deserialize for passport
@@ -52,11 +62,20 @@ mongo.connect(db_addr, function(err, db) {
 			done(null, user.id);
 		});
 		passport.deserializeUser(function(id, done) {
-			// TODO: Query the DB to get user details
-			done(null, {
-				id: id,
-				name: id
-			});
+			// This is VERY inefficient!
+			// TODO: Make find({ _id: id }) work
+			db.collection('users').find({})
+				.toArray(function(err, data) {
+					for(var i=0; i<data.length; i++){
+						if(data[i]._id == id){
+							console.log('A match!');
+							done(null, {
+								id: id,
+								name: data[i].username
+							});
+						}
+					}
+				});
 		});
 
 		// Set up the routes
