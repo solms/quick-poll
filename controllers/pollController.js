@@ -7,6 +7,8 @@ module.exports = function(db) {
 
 	// Create a new poll and store it in the database
 	this.createPoll = function(req, res) {
-		res.render('create-poll');
+		res.render('create-poll', {
+			options: ['Option 1']
+		});
 	};
 }
