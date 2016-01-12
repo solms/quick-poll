@@ -14,6 +14,18 @@ body {
 	color: white;
 }
 
-#sign-up-form {
+.container-fluid a {
+	text-decoration: none;
+	color: inherit;
+}
 
+.option {
+	background-color: orange;
+	margin-bottom: 10px;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.option:hover {
+	color: white;
 }
