@@ -68,7 +68,6 @@ mongo.connect(db_addr, function(err, db) {
 				.toArray(function(err, data) {
 					for(var i=0; i<data.length; i++){
 						if(data[i]._id == id){
-							console.log('A match!');
 							done(null, {
 								id: id,
 								name: data[i].username

@@ -2,8 +2,8 @@ module.exports = function(app, passport, db) {
 	var UserController = require(process.cwd() + '/controllers/userController.js');
 	var userController = new UserController(db);
 
-	var MyPollsController = require(process.cwd() + '/controllers/myPollsController.js');
-	var myPollsController = new MyPollsController(db);
+	var PollController = require(process.cwd() + '/controllers/pollController.js');
+	var pollController = new PollController(db);
 
 	app.get('/', function(req, res) {
 		res.render('index', {
@@ -29,7 +29,9 @@ module.exports = function(app, passport, db) {
 	});
 	app.post('/signup', userController.signUp);
 
-	app.get('/my-polls', ensureAuthenticated, myPollsController.viewPolls);
+	app.get('/my-polls', ensureAuthenticated, pollController.viewPolls);
+
+	app.get('/create-poll', ensureAuthenticated, pollController.createPoll);
 };
 
 // Check to see if the user is logged in

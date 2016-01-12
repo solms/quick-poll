@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Polls | Quick-Poll</title>
+	<title>Create New Poll | Quick-Poll</title>
 	<!-- Import Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<!-- Import custom CSS -->
@@ -12,15 +12,7 @@
 		<h1><a href="/"><b>Quick-Poll<b></a></h1>
 		<p>The simplest way to gather opinions.</p>
 	</div>
-	<h3>My Polls</h3>
-	<% if(polls.length == 0) { %>
-		<p>You do not currently have any created polls.</p>
-	<% } else { %>
-		<ul>
-			<% for(var i=0; i<polls.length; i++) { %>
-				<li><%= polls[i].name %></li>
-			<% } %>
-		</ul>
-	<% } %>
+	<h3>Create New Poll</h3>
+	
 </body>
 </html>
