@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pollApp">
 <head>
 	<title>Create New Poll | Quick-Poll</title>
 	<!-- Import Bootstrap -->
@@ -7,22 +7,27 @@
 	<!-- Import custom CSS -->
 	<link rel="stylesheet" type="text/css" href="custom.css">
 </head>
-<body>
+<body ng-controller="createController as ctrl">
 	<div id="heading-banner">
 		<h1><a href="/"><b>Quick-Poll<b></a></h1>
 		<p>The simplest way to gather opinions.</p>
 	</div>
 	<h3>Create New Poll</h3>
-	<div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+	<div id="create-poll-form" class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
 		<form action="" method="post">
-			<input type="text" name="question" placeholder="Question..." />
-			<ul>
-				<% for(var i=0; i<options.length; i++) { %>
-					<li><%= options[i] %></li>
-				<% } %>
+			<input type="text" class="poll-question" name="question" placeholder="Question..." />
+			<ul>	
+				<li ng-repeat="option in options">
+					<input class="poll-option" placeholder="{{ option.val }}" ng-model="option.val" />
+				</li>
 			</ul>
-			<button id="add_option">Add option</button>
+			<button type="button" ng-click="ctrl.addOption()">Add option</button>
 		</form>
 	</div>
+
+	<!-- Import AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<!-- Import Angular Controller -->
+	<script type="text/javascript" src="pollApp.js"></script>
 </body>
 </html>

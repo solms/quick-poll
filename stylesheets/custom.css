@@ -29,3 +29,16 @@ body {
 .option:hover {
 	color: white;
 }
+
+#create-poll-form ul {
+	list-style-type: none;
+	padding: 0;
+}
+.poll-question {
+	margin-bottom: 15px;
+	padding: 10px;
+	font-size: 20px;
+}
+.poll-option {
+	margin-bottom: 5px;
+}

@@ -79,6 +79,7 @@ mongo.connect(db_addr, function(err, db) {
 
 		// Set up the routes
 		app.use(express.static(__dirname + '/stylesheets'));
+		app.use(express.static(__dirname + '/public'));
 		var routes = require('./routes.js');
 		routes(app, passport, db);
 
