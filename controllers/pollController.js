@@ -11,4 +11,10 @@ module.exports = function(db) {
 			options: ['Option 1']
 		});
 	};
+
+	// Save the poll
+	this.savePoll = function(req, res) {
+		console.log(req.params);
+		res.redirect('/');
+	};
 }

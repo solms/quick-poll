@@ -32,6 +32,7 @@ module.exports = function(app, passport, db) {
 	app.get('/my-polls', ensureAuthenticated, pollController.viewPolls);
 
 	app.get('/create-poll', ensureAuthenticated, pollController.createPoll);
+	app.post('/create-poll', ensureAuthenticated, pollController.savePoll);
 };
 
 // Check to see if the user is logged in
