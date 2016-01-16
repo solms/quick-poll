@@ -1,0 +1,15 @@
+<div id="signup-form" ng-hide="logged_in">
+	<h3>Please enter your details below</h3>
+
+	<div ng-show="problem" id="problem">
+		<p>Error: {{ problem }}</p>
+	</div>
+
+	Username: 
+	<input type="text" ng-model="username" />
+	<br><br>
+	Password: 
+	<input type="password" ng-model="password" />
+	<br><br>
+	<button ng-click="login()">Log In</button>
+</div>

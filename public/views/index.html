@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="/" />
+	<title>Quick Poll</title>
+
+	<!-- Import AngularJS and ngRoute -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+	<!-- Import custom JS -->
+	<script type="text/javascript" src="/js/controllers/mainController.js"></script>
+	<script type="text/javascript" src="/js/controllers/signupController.js"></script>
+	<script type="text/javascript" src="/js/controllers/loginController.js"></script>
+	<script type="text/javascript" src="/js/appRoutes.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+
+	<!-- Import Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- Import custom CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">	
+
+</head>
+<body ng-app="pollApp" ng-controller="MainCtrl">
+	<div id="banner">
+		<h1>Quick-Poll</h1>
+		<p>The simple way to gather opinions.</p>
+	</div>
+	<!-- Dynamic Angular template -->
+	<div ng-view></div>
+</body>
+</html>

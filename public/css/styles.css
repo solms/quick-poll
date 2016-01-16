@@ -1,0 +1,13 @@
+body {
+	text-align: center;
+}
+
+#banner {
+	padding: 15px;
+	background-color: blue;
+	color: white;
+}
+
+#problem{
+	color: red;
+}

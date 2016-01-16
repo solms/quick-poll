@@ -1,0 +1,19 @@
+<div id="signup-form" ng-hide="user_added">
+	<h3>Please enter your details below</h3>
+
+	<div ng-show="problem" id="problem">
+		<p>Error: {{ problem }}</p>
+	</div>
+
+	Username: 
+	<input type="text" ng-model="username" />
+	<br><br>
+	Password: 
+	<input type="password" ng-model="password" />
+	<br><br>
+	<button ng-click="signup()">Sign Up</button>
+</div>
+
+<div id="signup-complete" ng-show="user_added">
+	<p>You have been successfully signed up. Please <a href="/login">log in</a>.</p>
+</div>
