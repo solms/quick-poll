@@ -53,6 +53,15 @@ module.exports = function(app, passport) {
 		res.status(200).send('/'); // Successfully logged in
 	});
 
+	// Log out
+	app.get('/logout', function(req, res) {
+		if(req.isAuthenticated()) {
+			req.logout();
+		}
+		res.redirect('/')
+
+	})
+
 	// Front-end route
 	app.get('*', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../public/views/index.html'));

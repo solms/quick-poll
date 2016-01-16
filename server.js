@@ -13,6 +13,9 @@ var app = express();
 // Database config file
 var db = require('./config/db');
 
+// Connect to the database model
+var User = require('./app/models/user');
+
 // Set up the port
 var port = process.env.PORT || 3000;
 
@@ -38,36 +41,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new passportLocal.Strategy(verifyCredentials));
 function verifyCredentials(username, password, done) {
-	if(username === password) {
-		done(null, {
-			id: username,
-			name: username
-		})
-	} else {
-		done(null, null);
-	}
-	/*
-	// Check if username and password match document in the DB
-	db.collection('users').find({
+	// Test if username and password match something in the DB
+	User.findOne({
 		username: username,
 		password: password
-	}).toArray(function(err, data) {
+	}, function(err, data) {
 		if(err) {
-			console.log('ERROR!');
 			console.log(err);
 		} else {
-			if(data.length == 0){
-				console.log('Username and password do not match a document.');
+			if(data == null) { // Combo does not exist
 				done(null, null);
-			} else {
+			} else { // Match found
 				console.log(data);
 				done(null, {
-					id: data[0]._id,
-					name: data[0].username
-				})
+					id: data._id,
+					name: username
+				});
 			}
 		}
-	});*/
+	});
 };
 
 // Serialize and deserialize for passport
@@ -75,26 +67,21 @@ passport.serializeUser(function(user, done) {
 	done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-	done(null, {
-		id: id,
-		name: id
+	// Deserialize the username by matching the id to the _id in the DB
+	User.findOne({
+		_id: id
+	}, function(err, data) {
+		if(err) {
+			console.log(err);
+		} else if (data != null) {
+			done(null, {
+				id: id,
+				name: data.username
+			});
+		} else {
+			console.log('Didnt find a match to deserialize');
+		}
 	});
-
-
-	/*
-	// This is VERY inefficient!
-	// TODO: Make find({ _id: id }) work
-	db.collection('users').find({})
-		.toArray(function(err, data) {
-			for(var i=0; i<data.length; i++){
-				if(data[i]._id == id){
-					done(null, {
-						id: id,
-						name: data[i].username
-					});
-				}
-			}
-		}); */
 });
 
 // Set the static file locations
