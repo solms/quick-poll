@@ -1,0 +1,13 @@
+<div id="create-poll-form">
+	<h3>Create a poll</h3>
+	<p>Fill in the information below to create your poll.</p>
+	<input id="create-poll-question" type="text" ng-model="poll_question" />
+	<ul>
+		<li ng-repeat="poll_option in poll_options">
+			<input type="text" ng-model="poll_options[$index]" />
+			<span ng-click="removeOption($index)">X</span>
+		</li>
+	</ul>
+	<button ng-click="addOption()">Add another option</button>
+	<button ng-click="submitPoll()">Submit poll</button>
+</div>

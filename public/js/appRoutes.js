@@ -11,12 +11,22 @@ angular.module('appRoutes', [])
         // Sign up page
         .when('/signup', {
             templateUrl: 'views/signup.html',
-            controller: 'SignupCtrl'
+            controller : 'SignupCtrl'
         })
         // Log in page
         .when('/login', {
             templateUrl: 'views/login.html',
-            controller: 'LoginCtrl' 
+            controller : 'LoginCtrl' 
+        })
+        // Create Poll page
+        .when('/create-poll', {
+            templateUrl: 'views/createPoll.html',
+            controller : 'CreatePollCtrl'
+        })
+        // My Polls page
+        .when('my-polls', {
+            templateUrl: 'views/myPolls.html',
+            controller : 'MyPollsCtrl'
         });
 
     $locationProvider.html5Mode(true);

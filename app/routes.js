@@ -62,8 +62,32 @@ module.exports = function(app, passport) {
 
 	})
 
+	// Add a new poll to the database
+	app.post('/submit-poll', ensureAuthenticated, function(req, res) {
+		var new_poll = new Poll({
+			user 	: req.user.id,
+			question: req.body.question,
+			options : req.body.options
+		});
+		new_poll.save(function(err) {
+			if(err) {
+				res.status(500);
+			} 
+			res.status(200);
+		})
+	});
+
 	// Front-end route
 	app.get('*', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../public/views/index.html'));
 	});
+};
+
+// Create our own middleware to check that user is authenticated
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		next();
+	} else {
+		res.sendStatus(403);
+	}
 };
