@@ -1,7 +1,12 @@
-<div id="my-polls">
-	<ul>
-		<li ng-repeat="poll in polls" ng-click="viewPoll($index)">
-			{{ poll.question }}
+<div id="my-polls" class="container-fluid">
+	<h3>Click on a poll question to view more details.</h3>
+	<ul class="col-sm-6 col-sm-offset-3">
+		<li ng-repeat="poll in polls">
+			<span id="my-polls-question" ng-click="viewPoll($index)">
+				{{ poll.question }}
+			</span>
+			<br>
+			<span id="my-polls-created">created: {{ poll.created }}</span> | <span id="my-polls-delete" ng-click="delete($index)">delete</span>
 		</li>
 	</ul>
 </div>

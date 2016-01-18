@@ -17,16 +17,15 @@ angular.module('createPollController', [])
 
 		// Add the poll to the database
 		$scope.submitPoll = function() {
-			$http.post('/submit-poll', {
+			$http.post('/api/submit-poll', {
 				question: $scope.poll_question,
 				options : $scope.poll_options
-			}).then(function() {
-				// Success callback
-				console.log('Added the poll to the database.');
+			}).then(function() { // Success
+				// Redirect to home page
 				$location.path('/');
 			}, function() {
-				// Failure callback
-				console.log('Please log in first.');
+				// Failure
+				
 			});
 		};
 	}]);

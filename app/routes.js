@@ -63,19 +63,35 @@ module.exports = function(app, passport) {
 	})
 
 	// Add a new poll to the database
-	app.post('/submit-poll', ensureAuthenticated, function(req, res) {
+	app.post('/api/submit-poll', ensureAuthenticated, function(req, res) {
 		var new_poll = new Poll({
 			user 	: req.user.id,
 			question: req.body.question,
-			options : req.body.options
+			options : req.body.options,
+			votes	: new Array(req.body.options.length).fill(0)
 		});
 		new_poll.save(function(err) {
 			if(err) {
 				res.status(500);
 			} 
-			res.status(200);
-		})
+			res.status(200).send('/');
+		});
 	});
+
+	// Delete poll from database
+	app.post('/api/delete-poll', ensureAuthenticated, function(req, res) {
+		Poll.remove({
+			question: 	req.body.question,
+			user: 		req.user.id
+		}, function(err, removed) {
+			if(err) {
+				console.log(err);
+				res.status(501);
+			} else {
+				res.status(200);
+			}
+		});
+	})
 
 	// Get current user's created polls
 	app.get('/api/get-polls', ensureAuthenticated, function(req, res) {

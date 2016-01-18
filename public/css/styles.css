@@ -31,4 +31,13 @@ body {
 
 #my-polls ul {
 	list-style-type: none;
+	background-color: yellow;
+}
+#my-polls-question {
+	cursor: pointer;
+	font-size: 20px;
+}
+#my-polls-delete {
+	color: red;
+	cursor: pointer;
 }
