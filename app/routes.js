@@ -77,6 +77,20 @@ module.exports = function(app, passport) {
 		})
 	});
 
+	// Get current user's created polls
+	app.get('/api/get-polls', ensureAuthenticated, function(req, res) {
+		console.log('Trying to find polls for user ' + req.user.id);
+		Poll.find({
+			user: req.user.id
+		}, function(err, polls) {
+			if(err) {
+				console.log(err);
+				res.status(500);
+			}
+			res.json(polls).status(200);
+		});
+	});
+
 	// Front-end route
 	app.get('*', function(req, res) {
 		res.sendFile(path.join(__dirname + '/../public/views/index.html'));

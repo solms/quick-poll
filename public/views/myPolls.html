@@ -1,0 +1,7 @@
+<div id="my-polls">
+	<ul>
+		<li ng-repeat="poll in polls" ng-click="viewPoll($index)">
+			{{ poll.question }}
+		</li>
+	</ul>
+</div>

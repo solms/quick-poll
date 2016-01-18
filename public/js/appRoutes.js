@@ -24,7 +24,7 @@ angular.module('appRoutes', [])
             controller : 'CreatePollCtrl'
         })
         // My Polls page
-        .when('my-polls', {
+        .when('/my-polls', {
             templateUrl: 'views/myPolls.html',
             controller : 'MyPollsCtrl'
         });
