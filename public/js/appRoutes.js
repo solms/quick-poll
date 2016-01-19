@@ -27,6 +27,11 @@ angular.module('appRoutes', [])
         .when('/my-polls', {
             templateUrl: 'views/myPolls.html',
             controller : 'MyPollsCtrl'
+        })
+        // Vote page
+        .when('/vote', {
+            templateUrl: 'views/vote.html',
+            controller : 'VoteCtrl'
         });
 
     $locationProvider.html5Mode(true);
