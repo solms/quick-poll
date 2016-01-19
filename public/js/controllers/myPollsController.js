@@ -19,8 +19,9 @@ angular.module('myPollsController', [])
 			$http.post('/api/delete-poll', {
 				question: $scope.polls[index].question
 			}).then(function() {	// Success
-				$scope.polls.splice(index, 1);
+				//$scope.polls.splice(index, 1);
 				console.log('Poll succesfully deleted from the database.');
+				$location.path('/my-polls');
 			}, function() {				// Failure
 				console.log('An error occurred while trying to delete the poll.');
 			});

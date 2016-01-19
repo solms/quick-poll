@@ -88,7 +88,7 @@ module.exports = function(app, passport) {
 				console.log(err);
 				res.status(501);
 			} else {
-				res.status(200);
+				res.status(200).send('/my-polls');
 			}
 		});
 	})
