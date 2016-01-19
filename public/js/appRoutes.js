@@ -28,6 +28,11 @@ angular.module('appRoutes', [])
             templateUrl: 'views/myPolls.html',
             controller : 'MyPollsCtrl'
         })
+        // Specific poll as owner
+        .when('/my-poll', {
+            templateUrl: 'views/myPoll.html',
+            controller:  'MyPollCtrl'
+        })
         // Vote page
         .when('/vote', {
             templateUrl: 'views/vote.html',

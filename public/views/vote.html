@@ -1,5 +1,27 @@
-<div id="get-poll-id">
-	<h3>Share your opinion</h3>
-	<p>Enter the Poll ID of the poll to which you wish to contribute below:</p>
-	<input type="text" ng-model="poll_id" />
+<div ng-show="problem" id="problem">
+	<p>Error: {{ problem }}</p>
+</div>
+
+<div id="get-poll-id" ng-hide="poll_retrieved">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h3>Share your opinion</h3>
+		<p>Enter the Poll ID of the poll to which you wish to contribute below:</p>
+		<input type="text" ng-model="poll_id" /><br>
+		<button ng-click="goVote()">Go!</button>
+	</div>
+</div>
+
+<div class="container-fluid" id="vote" ng-show="poll_retrieved">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h3>{{ poll.question }}</h3>
+	</div>
+	<ul>
+		<form>
+			<div class="col-sm-6 col-sm-offset-3">
+				<li ng-repeat="option in poll.options">
+					{{ option }} | <input type="radio" />
+				</li>
+			</div>
+		</form>
+	</ul>
 </div>

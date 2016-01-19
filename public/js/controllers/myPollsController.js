@@ -8,11 +8,6 @@ angular.module('myPollsController', [])
 
 			});
 
-		// View the details for clicked poll
-		$scope.viewPoll = function(index) {
-			console.log('You want to view ' + $scope.polls[index].question);
-		};
-
 		// Delete the poll from the database
 		$scope.delete = function(index) {
 			// TODO: Ask the user to confirm!

@@ -1,2 +1,2 @@
 angular.module('pollApp', 
-	['ngRoute', 'appRoutes', 'mainController', 'signupController', 'loginController', 'createPollController', 'myPollsController', 'voteController']);
+	['ngRoute', 'appRoutes', 'mainController', 'signupController', 'loginController', 'createPollController', 'myPollsController', 'voteController', 'myPollController']);
