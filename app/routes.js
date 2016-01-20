@@ -110,7 +110,7 @@ module.exports = function(app, passport) {
 
 	// Get poll to vote
 	app.post('/api/poll', ensureAuthenticated, function(req, res) {
-		console.log('Getting poll for ovoting...');
+		console.log('Getting poll for voting...');
 		Poll.findOne({ _id: req.body.id }, function(err, doc) {
 			// Did not find a match
 			if(doc == null) {
@@ -120,6 +120,27 @@ module.exports = function(app, passport) {
 				res.status(200).json(doc);
 			}
 		});
+	});
+
+	// Cast a vote to the database
+	// Data received: { poll_id, option }
+	app.post('/api/submit-vote', ensureAuthenticated, function(req, res) {
+		Poll.findOne({
+			_id: req.body.poll_id
+		}, function(err, doc) {
+			// Check if this user has voted in this poll already
+			if(doc.voted.indexOf(req.user.id) == -1){
+				var index = doc.options.indexOf(req.body.option);
+				doc.votes[index]++;
+				doc.markModified('votes');
+				doc.voted.push(req.user.id);
+				doc.markModified('voted');
+				doc.save();
+				res.status(200);
+			} else{
+				res.status(403).send('You have already cast your vote!');
+			}			
+		})
 	});
 
 	// Front-end route

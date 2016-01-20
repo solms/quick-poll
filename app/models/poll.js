@@ -8,7 +8,8 @@ var datestamp 	= d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
 module.exports = mongoose.model('Poll', {
 	user	: { type: String, default: '' },
 	question: { type: String, default: '' },
-	options	: [],
-	votes	: [],
-	created	: { type: String, default: datestamp }
+	options	: [String],
+	votes	: [Number],
+	created	: { type: String, default: datestamp },
+	voted	: [String]
 });
