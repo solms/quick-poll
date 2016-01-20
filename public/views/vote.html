@@ -14,14 +14,19 @@
 <div class="container-fluid" id="vote" ng-show="poll_retrieved">
 	<div class="col-sm-6 col-sm-offset-3">
 		<h3>{{ poll.question }}</h3>
-	</div>
-	<ul>
 		<form>
-			<div class="col-sm-6 col-sm-offset-3">
-				<li ng-repeat="option in poll.options">
-					{{ option }} | <input type="radio" />
-				</li>
+			<div ng-repeat="option in poll.options">
+				<div class="col-sm-8">
+					{{ option }}
+				</div>
+				<div class="col-sm-4">
+					<input type="radio" name="voteoption" ng-click="setVote(option)" />
+				</div>
+				<br>
 			</div>
+			<button ng-click="submitVote()">Vote</button>
 		</form>
-	</ul>
+		
+	</div>
+	
 </div>
