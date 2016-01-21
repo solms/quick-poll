@@ -43,6 +43,9 @@ input {
 	text-decoration: none;
 	color: #A9E5BB;
 }
+#banner a:hover {
+	font-style: normal;
+}
 
 #problem{
 	color: red;
@@ -76,17 +79,24 @@ input {
 	cursor: pointer;
 }
 
-#my-polls ul {
-	list-style-type: none;
-	background-color: yellow;
+.poll-item {
+	margin-bottom: 15px;
 }
-#my-polls-question {
-	cursor: pointer;
-	font-size: 20px;
+.poll-item a {
+	font-size: 25px;
+	font-weight: normal;
 }
-#my-polls-delete {
-	color: red;
+.poll-item a:hover {
+	font-style: normal;
+	font-weight: bold;
+}
+.poll-item .share-poll:hover,
+.poll-item .delete-poll:hover {
 	cursor: pointer;
+	font-weight: bold;
+}
+.poll-item .delete-poll {
+	color: #F72C25;
 }
 
 #graph div{
@@ -96,4 +106,10 @@ input {
 	padding: 3px;
 	margin: 1px;
 	color: #A9E5BB;
+}
+
+#sharing .well {
+	color: #2D1E2F;
+	background-color: #A9E5BB;
+	font-size: 1.5em;
 }

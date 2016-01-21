@@ -128,18 +128,22 @@ module.exports = function(app, passport) {
 		Poll.findOne({
 			_id: req.body.poll_id
 		}, function(err, doc) {
-			// Check if this user has voted in this poll already
-			if(doc.voted.indexOf(req.user.id) == -1){
-				var index = doc.options.indexOf(req.body.option);
-				doc.votes[index]++;
-				doc.markModified('votes');
-				doc.voted.push(req.user.id);
-				doc.markModified('voted');
-				doc.save();
-				res.status(200);
-			} else{
-				res.status(403).send('You have already cast your vote!');
-			}			
+			if(doc != null) {
+				// Check if this user has voted in this poll already
+				if(doc.voted.indexOf(req.user.id) == -1){
+					var index = doc.options.indexOf(req.body.option);
+					doc.votes[index]++;
+					doc.markModified('votes');
+					doc.voted.push(req.user.id);
+					doc.markModified('voted');
+					doc.save();
+					res.status(200);
+				} else{
+					res.status(403).send('You have already cast your vote!');
+				}			
+			} else {
+				console.log('...doc returned null with the poll_id ' + req.body.poll_id);
+			}
 		})
 	});
 

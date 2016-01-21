@@ -1,5 +1,7 @@
 angular.module('myPollsController', [])
 	.controller('MyPollsCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+		$scope.sharing = false;
+
 		// Get user's polls from database/server
 		$http.get('/api/get-polls')
 			.then(function(response) { 	// Success
@@ -20,5 +22,11 @@ angular.module('myPollsController', [])
 			}, function() {				// Failure
 				console.log('An error occurred while trying to delete the poll.');
 			});
+		}
+
+		// Display the sharing link
+		$scope.share = function(index) {
+			$scope.share_link = 'localhost:3000/vote?id=' + $scope.polls[index]._id;
+			$scope.sharing = true;
 		}
 	}]);

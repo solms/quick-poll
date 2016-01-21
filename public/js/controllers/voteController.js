@@ -1,7 +1,21 @@
 angular.module('voteController', [])
-	.controller('VoteCtrl', ['$http', '$scope', function($http, $scope) {
+	.controller('VoteCtrl', ['$http', '$scope', '$location', function($http, $scope, $location) {
 		$scope.poll_retrieved = false;
-		var selected_option = '';
+		var selected_option = ''; 
+
+		// Check if the user came here with the poll ID in the URL
+		if($location.search().id != undefined) {
+			$scope.poll_id = $location.search().id;
+			$http.post('/api/poll', {
+				id: $location.search().id
+			}).then(function(response) { // Successfully retrieved the poll
+				console.log('Retrieved a poll...');
+				$scope.poll_retrieved = true;
+				$scope.poll = response.data;
+			}, function(response) { 	 // Error
+				$scope.problem = 'Could not retrieve the poll.';
+			});
+		}
 
 		$scope.goVote = function() {
 			if($scope.poll_id == '' || $scope.poll_id == undefined) {
