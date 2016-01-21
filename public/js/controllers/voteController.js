@@ -3,36 +3,27 @@ angular.module('voteController', [])
 		$scope.poll_retrieved = false;
 		var selected_option = ''; 
 
-		// Check if the user came here with the poll ID in the URL
-		if($location.search().id != undefined) {
-			$scope.poll_id = $location.search().id;
-			$http.post('/api/poll', {
-				id: $location.search().id
-			}).then(function(response) { // Successfully retrieved the poll
-				console.log('Retrieved a poll...');
-				$scope.poll_retrieved = true;
-				$scope.poll = response.data;
-			}, function(response) { 	 // Error
-				$scope.problem = 'Could not retrieve the poll.';
-			});
-		}
-
 		$scope.goVote = function() {
 			if($scope.poll_id == '' || $scope.poll_id == undefined) {
-				$scope.problem = 'Please enter a valid poll ID!';
+				$scope.problem = 'Please enter a valid poll ID.';
 			} else {
 				// Try to get the poll
 				$http.post('/api/poll', {
 					id: $scope.poll_id
-				}).then(function(response) {	// Successfully retrieved the poll
-					console.log('Successfully retrieved poll.');
-					$scope.poll_retrieved = true;
-					$scope.poll = response.data;
-				}, function(response) {				// Could not retrieve the poll
-					console.log(response.data);
-				});
+				}).then(pollRetrieved, 
+						pollNotRetrieved);
 			}
 		};
+
+		// Check if the user came here with the poll ID in the URL
+		if($location.search().id != undefined) {
+			$scope.poll_id = $location.search().id;
+			$scope.goVote();
+			/*$http.post('/api/poll', {
+				id: $location.search().id
+			}).then(pollRetrieved, 
+					pollNotRetrieved);*/
+		}
 
 		// Set the selected option to vote for
 		$scope.setVote = function(option) {
@@ -51,4 +42,22 @@ angular.module('voteController', [])
 				console.log(data);
 			});
 		}
+
+		// Successfully retrieved a poll from the database
+		var pollRetrieved = function(response) {
+			console.log('Retrieved a poll...');
+			$scope.poll_retrieved = true;
+			$scope.poll = response.data;
+		};
+		// Failed to retrieve poll
+		var pollNotRetrieved = function(response) {
+			if(response.status == 403) { // Forbidden, i.e. the user needs to log in
+				$scope.problem = 'You need to log in first!';
+			}  else if(response.data == 'Poll not found') {
+				$scope.problem = 'The supplied poll ID does not match any polls in the database.'
+					+ '\nIt may have been deleted by its owner.';
+			} else { // Something else went wrong ...
+				$scope.problem = 'Could not retrieve the poll.';	
+			}			
+		};
 	}]);
