@@ -1,8 +1,19 @@
-<div ng-if="authenticated == true">
+<div id="home-authenticated" ng-if="authenticated == true">
 	<p>Hi there, {{ active_user }}.</p>
-	<a href="/my-polls">My Polls</a><br>
-	<a href="/create-poll">Create Poll</a><br>
-	<a href="/vote">Vote</a><br><br>
+	<div class="container-fluid">
+		<a href="/my-polls"><div class="col-sm-2 col-sm-offset-2 home-tile">
+			<i class="fa fa-bar-chart fa-3x"></i><br>
+			My Polls
+		</div></a>
+		<a href="/create-poll"><div class="col-sm-2 col-sm-offset-1 home-tile">
+			<i class="fa fa-tasks fa-3x"></i><br>
+			Create Poll
+		</div></a>
+		<a href="/vote"><div class="col-sm-2 col-sm-offset-1 home-tile">
+			<i class="fa fa-check-square-o fa-3x"></i><br>
+			Vote	
+		</div></a>
+	</div>
 	<a href="/logout">Log out</a>
 </div>
 

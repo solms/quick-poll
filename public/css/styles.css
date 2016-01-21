@@ -1,19 +1,54 @@
 body {
 	text-align: center;
+	font-family: 'Cambay', sans-serif;
+	color: #A9E5BB;
+	background-color: #2D1E2F;
+}
+
+body a {
+	color: #A9E5BB;
+	font-weight: bold;
+}
+body a:hover {
+	color: #A9E5BB;
+	font-style: italic;
+	text-decoration: none;
 }
 
 #banner {
-	padding: 15px;
-	background-color: blue;
-	color: white;
+	font-family: 'Satisfy', cursive;
+	padding: 5px;
+	background-color: #F72C25;
+	color: #A9E5BB;
+}
+#banner h1 {
+	font-size:	5em;
+}
+#banner p {
+	font-size: 2em;
 }
 #banner a {
 	text-decoration: none;
-	color: white;
+	color: #A9E5BB;
 }
 
 #problem{
 	color: red;
+}
+
+.home-tile {
+	font-weight: bold;
+	background-color: #A9E5BB;
+	padding: 25px 0px 25px 0px;
+	border-radius: 5px;
+}
+.home-tile:hover {
+	background-color: #F72C25;
+	color: #A9E5BB;
+}
+
+#signup-form input {
+	border-radius: 2px;
 }
 
 #create-poll-question {
