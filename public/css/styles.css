@@ -15,6 +15,18 @@ body a:hover {
 	text-decoration: none;
 }
 
+.btn-default {
+	background-color: #A9E5BB;
+	color: #2D1E2F;
+	font-weight: bold;
+}
+
+input {
+	background-color: #A9E5BB;
+	color: #2D1E2F;
+	border-radius: 2px;
+}
+
 #banner {
 	font-family: 'Satisfy', cursive;
 	padding: 5px;
@@ -39,16 +51,13 @@ body a:hover {
 .home-tile {
 	font-weight: bold;
 	background-color: #A9E5BB;
+	color: #2D1E2F;
 	padding: 25px 0px 25px 0px;
 	border-radius: 5px;
 }
 .home-tile:hover {
 	background-color: #F72C25;
 	color: #A9E5BB;
-}
-
-#signup-form input {
-	border-radius: 2px;
 }
 
 #create-poll-question {
@@ -62,6 +71,9 @@ body a:hover {
 }
 #create-poll-form button {
 	margin: 15px 5px 5px 15px;
+}
+.remove-option:hover {
+	cursor: pointer;
 }
 
 #my-polls ul {

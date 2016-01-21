@@ -5,9 +5,9 @@
 	<ul>
 		<li ng-repeat="(i, option) in poll.options track by $index">
 			<input type="text" ng-model="poll.options[i]" />
-			<span ng-click="removeOption(i)">X</span>
+			<span class="remove-option" ng-click="removeOption(i)"><i class="fa fa-remove"></i></span>
 		</li>
 	</ul>
-	<button ng-click="addOption()">Add another option</button>
-	<button ng-click="submitPoll()">Submit poll</button>
+	<button class="btn btn-default" ng-click="addOption()">Add another option</button>
+	<button class="btn btn-default" ng-click="submitPoll()">Submit poll</button>
 </div>
