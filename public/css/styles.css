@@ -27,6 +27,14 @@ input {
 	border-radius: 2px;
 }
 
+.back {
+	font-size: 1.2em;
+	text-align: left;
+}
+.back a:hover {
+	font-style: normal !important;
+}
+
 #banner {
 	font-family: 'Satisfy', cursive;
 	padding: 5px;
