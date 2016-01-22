@@ -2,7 +2,6 @@ angular.module('loginController', [])
 	.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
 		$scope.problem = '';
 		$scope.login = function() {
-			console.log('Try to log in...');
 			// Try to log in
 			$http.post('/login', {
 				username: $scope.username,
