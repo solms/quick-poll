@@ -100,10 +100,10 @@ input {
 }
 
 .chart rect {
-	fill: steelblue;
+	fill: #5B7F77;
 }
 .chart text {
-	fill: white;
+	fill: #A9E5BB;
 	font: 10px sans-serif;
 	text-anchor: end;
 }
