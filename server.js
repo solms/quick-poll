@@ -52,7 +52,7 @@ function verifyCredentials(username, password, done) {
 			if(data == null) { // Combo does not exist
 				done(null, null);
 			} else { // Match found
-				console.log(data);
+				console.log(username + ' has logged in successfully.');
 				done(null, {
 					id: data._id,
 					name: username
