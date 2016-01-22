@@ -142,10 +142,18 @@ module.exports = function(app, passport) {
 			if(doc != null) {
 				// Check if this user has voted in this poll already
 				if(doc.voted.indexOf(req.user.id) == -1){
-					var index = doc.options.indexOf(req.body.option);
-					doc.votes[index]++;
-					doc.markModified('votes');
-					doc.voted.push(req.user.id);
+					// Increase the appropriate option's vote count
+					doc.options = doc.options.filter(function( obj ) {
+						if(obj._id == req.body.option._id) {
+							obj.votes++;
+							return obj;
+						} else {
+							return obj;
+						}
+					});
+					doc.markModified('options');
+					// TODO: Uncomment this!!!
+					// doc.voted.push(req.user.id);
 					doc.markModified('voted');
 					doc.save();
 					res.status(200);

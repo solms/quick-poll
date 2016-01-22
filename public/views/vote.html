@@ -17,7 +17,7 @@
 		<form>
 			<div ng-repeat="option in poll.options">
 				<div class="col-sm-8">
-					{{ option }}
+					{{ option.description }}
 				</div>
 				<div class="col-sm-4">
 					<input type="radio" name="voteoption" ng-click="setVote(option)" />

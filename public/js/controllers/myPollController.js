@@ -16,8 +16,8 @@ angular.module('myPollController', [])
 
 		// Visualize the voting data using D3.js
 		var drawGraph = function() {
-			var width = 960,
-			    height = 500;
+			var width = 750,
+			    height = 300;
 
 			var y = d3.scale.linear()
 			    .range([height, 0]);
