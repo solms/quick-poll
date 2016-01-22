@@ -99,13 +99,13 @@ input {
 	color: #F72C25;
 }
 
-#graph div{
+.chart rect {
+	fill: steelblue;
+}
+.chart text {
+	fill: white;
 	font: 10px sans-serif;
-	background-color: #F72C25;
-	text-align: right;
-	padding: 3px;
-	margin: 1px;
-	color: #A9E5BB;
+	text-anchor: end;
 }
 
 #sharing .well {

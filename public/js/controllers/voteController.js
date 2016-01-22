@@ -53,6 +53,7 @@ angular.module('voteController', [])
 		var pollNotRetrieved = function(response) {
 			if(response.status == 403) { // Forbidden, i.e. the user needs to log in
 				$scope.problem = 'You need to log in first!';
+				$location.path('/login?id='+$scope.poll_id);
 			}  else if(response.data == 'Poll not found') {
 				$scope.problem = 'The supplied poll ID does not match any polls in the database.'
 					+ '\nIt may have been deleted by its owner.';
