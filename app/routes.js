@@ -64,12 +64,23 @@ module.exports = function(app, passport) {
 
 	// Add a new poll to the database
 	app.post('/api/submit-poll', ensureAuthenticated, function(req, res) {
+		// Generate the options object array
+		var options_arr = [];
+		for(var i=0; i< req.body.options.length; i++) {
+			options_arr.push({
+				description: req.body.options[i],
+				votes: 0
+			});
+		};
+
+		// Create a new Poll model instance
 		var new_poll = new Poll({
 			user 	: req.user.id,
 			question: req.body.question,
-			options : req.body.options,
-			votes	: new Array(req.body.options.length).fill(0)
+			options : options_arr
 		});
+
+		// Save the model instance
 		new_poll.save(function(err) {
 			if(err) {
 				res.status(500);
