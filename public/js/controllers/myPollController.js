@@ -16,39 +16,34 @@ angular.module('myPollController', [])
 
 		// Visualize the voting data using D3.js
 		var drawGraph = function() {
-			var width = 750,
-			    height = 300;
+			
+			var data = $scope.poll.options,
+					width = 750,
+					barHeight = 20;
 
-			var y = d3.scale.linear()
-			    .range([height, 0]);
+			var x = d3.scale.linear()
+				.range([0, width])
+				.domain([0, d3.max(data, function(d) { return d.votes; })]);
 
-			var chart = d3.select(".chart")
-			    .attr("width", width)
-			    .attr("height", height);
+			var chart = d3.select('.chart')
+				.attr('width',  width)
+				.attr('height', barHeight * data.length);
 
-			var data = $scope.poll.options;
-			console.log('data:');
-			console.log(data);
+			var bar = chart.selectAll('g')
+					.data(data)
+				.enter().append('g')
+					.attr('transform', function(d, i) {
+						return ('translate(0,' + barHeight*i + ')');
+					});
 
-			y.domain([0, d3.max(data, function(d) { return d.votes; })]);
-
-			var barWidth = width / data.length;
-
-			var bar = chart.selectAll("g")
-			  .data(data)
-			.enter().append("g")
-			  .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
-
-			bar.append("rect")
-			  .attr("y", function(d) { return y(d.votes); })
-			  .attr("height", function(d) { return height - y(d.votes); })
-			  .attr("width", barWidth - 1);
+			bar.append('rect')
+				.attr('height', barHeight-1)
+				.attr('width', function(d) { return x(d.votes); });
 
 			bar.append("text")
-			  .attr("x", barWidth / 2)
-			  .attr("y", function(d) { return y(d.votes) + 3; })
+			  .attr("x", function(d) { return x(d.votes) - 3; })
+			  .attr("y", barHeight / 3)
 			  .attr("dy", ".75em")
-  .text(function(d) { return d.votes; });
-
+			  .text(function(d) { return d.votes; });
 		}
 	}]);
