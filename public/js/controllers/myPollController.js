@@ -39,7 +39,7 @@ angular.module('myPollController', [])
 			bar.append('rect')
 				.attr('height', barHeight-1)
 				.attr('width', function(d) { return x(d.votes); });
-
+			// Append the total votes onto each bar
 			bar.append("text")
 			  .attr("x", function(d) { return x(d.votes) - 3; })
 			  .attr("y", barHeight / 3)
@@ -49,7 +49,8 @@ angular.module('myPollController', [])
 			  		return d.votes;
 			  	}
 			  });
-
+		  // Append the description of each option before the bar
+		  // TODO: Limit the amount of characters
 		  bar.append('text')
 		  	.attr('x', function(d) { return -10; })
 		  	.attr('y', function(d) { return barHeight / 3 })
