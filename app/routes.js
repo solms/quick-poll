@@ -55,11 +55,11 @@ module.exports = function(app, passport) {
 
 	// Log out
 	app.get('/logout', function(req, res) {
+		console.log('Got a log out request.');
 		if(req.isAuthenticated()) {
 			req.logout();
 		}
-		res.redirect('/')
-
+		res.status(200).send('/');
 	})
 
 	// Add a new poll to the database
