@@ -22,7 +22,7 @@ angular.module('myPollController', [])
 					barHeight = 20;
 
 			var x = d3.scale.linear()
-				.range([0, width])
+				.range([0, width-200])
 				.domain([0, d3.max(data, function(d) { return d.votes; })]);
 
 			var chart = d3.select('.chart')
@@ -33,7 +33,7 @@ angular.module('myPollController', [])
 					.data(data)
 				.enter().append('g')
 					.attr('transform', function(d, i) {
-						return ('translate(0,' + barHeight*i + ')');
+						return ('translate(200,' + barHeight*i + ')');
 					});
 
 			bar.append('rect')
@@ -44,6 +44,17 @@ angular.module('myPollController', [])
 			  .attr("x", function(d) { return x(d.votes) - 3; })
 			  .attr("y", barHeight / 3)
 			  .attr("dy", ".75em")
-			  .text(function(d) { return d.votes; });
+			  .text(function(d) {
+			  	if(d.votes > 0) {
+			  		return d.votes;
+			  	}
+			  });
+
+		  bar.append('text')
+		  	.attr('x', function(d) { return -10; })
+		  	.attr('y', function(d) { return barHeight / 3 })
+		  	.attr('dy', '.75em')
+		  	.text(function(d) { return d.description; });
+
 		}
 	}]);
