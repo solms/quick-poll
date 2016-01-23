@@ -20,6 +20,10 @@ body a:hover {
 	color: #2D1E2F;
 	font-weight: bold;
 }
+.btn-default:hover {
+	background-color: #F72C25;
+	color: #A9E5BB;
+}
 
 input {
 	background-color: #A9E5BB;
