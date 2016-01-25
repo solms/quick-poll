@@ -120,7 +120,8 @@ module.exports = function(app, passport) {
 	});
 
 	// Get poll to vote
-	app.post('/api/poll', ensureAuthenticated, function(req, res) {
+	// User does not need to be authenticated
+	app.post('/api/poll', function(req, res) {
 		console.log('Received a request for a poll to allow user to vote.');
 		Poll.findOne({ _id: req.body.id }, function(err, doc) {
 			// Did not find a match
@@ -135,31 +136,26 @@ module.exports = function(app, passport) {
 
 	// Cast a vote to the database
 	// Data received: { poll_id, option }
-	app.post('/api/submit-vote', ensureAuthenticated, function(req, res) {
+	// User does not need to be authenticated
+	app.post('/api/submit-vote', function(req, res) {
 		Poll.findOne({
 			_id: req.body.poll_id
 		}, function(err, doc) {
 			if(doc != null) {
-				// Check if this user has voted in this poll already
-				if(doc.voted.indexOf(req.user.id) == -1){
-					// Increase the appropriate option's vote count
-					doc.options = doc.options.filter(function( obj ) {
-						if(obj._id == req.body.option._id) {
-							obj.votes++;
-							return obj;
-						} else {
-							return obj;
-						}
-					});
-					doc.markModified('options');
-					// TODO: Uncomment this!!!
-					// doc.voted.push(req.user.id);
-					doc.markModified('voted');
-					doc.save();
-					res.status(200);
-				} else{
-					res.status(403).send('You have already cast your vote!');
-				}			
+				// TODO: Check if this user has voted in this poll already
+				// Increase the appropriate option's vote count
+				doc.options = doc.options.filter(function( obj ) {
+					if(obj._id == req.body.option._id) {
+						obj.votes++;
+						return obj;
+					} else {
+						return obj;
+					}
+				});
+				doc.markModified('options');
+				doc.markModified('voted');
+				doc.save();
+				res.status(200);			
 			} else {
 				console.log('...doc returned null with the poll_id ' + req.body.poll_id);
 			}
