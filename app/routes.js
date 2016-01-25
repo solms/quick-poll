@@ -153,7 +153,6 @@ module.exports = function(app, passport) {
 					}
 				});
 				doc.markModified('options');
-				doc.markModified('voted');
 				doc.save();
 				res.status(200);			
 			} else {
