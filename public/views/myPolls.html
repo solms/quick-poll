@@ -2,6 +2,10 @@
 	<p>Error: {{ problem }}</p>
 </div>
 
+<div class="back">
+	<a href="" ng-click="sharing=false"><i class="fa fa-chevron-left"></i> Go back</a>
+</div>
+
 <h3 ng-hide="sharing">Click on a poll question to view more details.</h3>
 <div class="container-fluid poll-item" ng-repeat="poll in polls" ng-hide="sharing">
 	<a href="/my-poll?id={{poll._id}}">{{ poll.question }}</a><br>
