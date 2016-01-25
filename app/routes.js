@@ -121,11 +121,13 @@ module.exports = function(app, passport) {
 
 	// Get poll to vote
 	app.post('/api/poll', ensureAuthenticated, function(req, res) {
+		console.log('Received a request for a poll to allow user to vote.');
 		Poll.findOne({ _id: req.body.id }, function(err, doc) {
 			// Did not find a match
 			if(doc == null) {
 				res.status(404).send('Poll not found');
 			} else {
+				console.log('Poll found! Sending it to client.');
 				res.status(200).json(doc);
 			}
 		});
