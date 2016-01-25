@@ -46,6 +46,7 @@ angular.module('voteController', [])
 				option : selected_option
 			}).success(function(data) {
 				console.log('You have successfully cast your vote.');
+				$location.path('/my-poll');
 			}).error(function(err, data) {
 				console.log(data);
 			});

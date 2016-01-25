@@ -1,5 +1,10 @@
 angular.module('myPollController', [])
 	.controller('MyPollCtrl', ['$http', '$scope', '$location', function($http, $scope, $location) {
+		// Check if the user is logged in
+		$http.get('/api/auth').success(function(response) {
+			$scope.authenticated 	= response.authenticated;
+		});
+
 		$http.post('/api/poll', { id: $location.search().id })
 			.then(function(response) {	// Success
 				// Make the poll data available to the front-end

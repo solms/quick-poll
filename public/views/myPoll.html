@@ -1,8 +1,8 @@
 <div ng-show="problem" id="problem">
 	<p>Error: {{ problem }}</p>
 </div>
-<div class="back">
-	<a href="/my-polls"><i class="fa fa-chevron-left"></i> Go back</a>
+<div class="back" ng-show="authenticated">
+	<a href="/my-polls"><i class="fa fa-chevron-left"></i> Back to my polls</a>
 </div>
 <div id="my-poll" class="container-fluid">
 	<h3>{{ poll.question }}</h3>
