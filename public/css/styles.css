@@ -125,3 +125,7 @@ input {
 	background-color: #A9E5BB;
 	font-size: 1.5em;
 }
+
+#custom-option-plus:hover {
+	cursor: pointer;
+}

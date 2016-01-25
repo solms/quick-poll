@@ -3,6 +3,15 @@ angular.module('voteController', [])
 		$scope.poll_retrieved = false;
 		var selected_option = ''; 
 
+		// Determine whether a user is logged in
+		$http.get('/api/auth').success(function(response) {
+			$scope.authenticated 	= response.authenticated;
+			if(response.active_user) { // Try to get the name of the active user
+				$scope.active_user 	= response.active_user.name;
+			}
+		});
+
+		// Try to retrieve the poll from given poll ID
 		$scope.goVote = function() {
 			if($scope.poll_id == '' || $scope.poll_id == undefined) {
 				$scope.problem = 'Please enter a valid poll ID.';
@@ -40,6 +49,22 @@ angular.module('voteController', [])
 			}).error(function(err, data) {
 				console.log(data);
 			});
+		}
+
+		// Add a custom option to the poll
+		$scope.addCustomOption = function() {
+			if($scope.custom != undefined) {
+				if($scope.custom.option != '') {
+					$http.post('/api/add-custom-option', {
+						poll_id: $scope.poll_id,
+						custom_option: $scope.custom.option
+					}).success(function(response) {
+						// TODO
+					}).error(function(response) {
+						// TODO
+					});
+				}
+			}
 		}
 
 		// Successfully retrieved a poll from the database

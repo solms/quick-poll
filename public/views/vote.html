@@ -24,7 +24,17 @@
 				</div>
 				<br>
 			</div>
-			<button class="btn btn-default" ng-click="submitVote()">Vote</button>
+			<span ng-show="authenticated">
+				<div class="col-sm-8">
+					<input type="text" name="custom_option" ng-model="custom.option" />
+				</div>
+				<div class="col-sm-4">
+					<i id="custom-option-plus" class="fa fa-plus fa-2x" ng-click="addCustomOption()"></i>
+				</div>
+			</span>
+			<a href="/login" ng-hide="authenticated">Log in to add custom options!</a>
+			<br><br>
+			<button class="btn btn-default" ng-click="submitVote()"><i class="fa fa-check"></i> Vote</button>
 		</form>
 		
 	</div>

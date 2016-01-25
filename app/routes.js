@@ -89,6 +89,30 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	// Add a custom option to an existing poll
+	// POST data format: { poll_id, custom_option }
+	app.post('/api/add-custom-option', ensureAuthenticated, function(req, res) {
+		console.log('Trying to add a custom option to poll ' + req.body.poll_id);
+		Poll.findOne({
+			_id: req.body.poll_id
+		}, function(err, doc) {
+			if(doc != null) {
+				// TODO: Check if this user has voted in this poll already
+				// Add the new option
+				doc.options.push({
+					description: req.body.custom_option,
+					votes: 0
+				});
+				doc.markModified('options');
+				doc.save();
+				console.log('Add custom option successfully.');
+				res.status(200);			
+			} else {
+				console.log('...doc returned null with the poll_id ' + req.body.poll_id);
+			}
+		})
+	})
+
 	// Delete poll from database
 	app.post('/api/delete-poll', ensureAuthenticated, function(req, res) {
 		Poll.remove({
