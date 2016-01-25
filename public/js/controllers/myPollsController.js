@@ -26,7 +26,7 @@ angular.module('myPollsController', [])
 
 		// Display the sharing link
 		$scope.share = function(index) {
-			$scope.share_link = 'localhost:3000/vote?id=' + $scope.polls[index]._id;
+			$scope.share_link = 'https://quick-vote.herokuapp.com/vote?id=' + $scope.polls[index]._id;
 			$scope.sharing = true;
 		}
 	}]);
