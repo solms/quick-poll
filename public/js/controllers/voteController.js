@@ -1,5 +1,5 @@
 angular.module('voteController', [])
-	.controller('VoteCtrl', ['$http', '$scope', '$location', function($http, $scope, $location) {
+	.controller('VoteCtrl', ['$http', '$scope', '$location', '$route', function($http, $scope, $location, $route) {
 		$scope.poll_retrieved = false;
 		var selected_option = ''; 
 
@@ -59,9 +59,8 @@ angular.module('voteController', [])
 						poll_id: $scope.poll_id,
 						custom_option: $scope.custom.option
 					}).success(function(response) {
-						// TODO
-					}).error(function(response) {
-						// TODO
+						// Success! Reload the page
+						$route.reload();
 					});
 				}
 			}

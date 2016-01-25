@@ -106,7 +106,7 @@ module.exports = function(app, passport) {
 				doc.markModified('options');
 				doc.save();
 				console.log('Add custom option successfully.');
-				res.status(200);			
+				res.sendStatus(200);			
 			} else {
 				console.log('...doc returned null with the poll_id ' + req.body.poll_id);
 			}
