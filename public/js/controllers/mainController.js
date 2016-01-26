@@ -1,5 +1,5 @@
 angular.module('mainController', [])
-	.controller('MainCtrl', ['$scope', '$http', '$route',function($scope, $http, $route) {
+	.controller('MainCtrl', ['$scope', '$http', '$location',function($scope, $http, $location) {
 		// Determine whether a user is logged in
 		$http.get('/api/auth').success(function(response) {
 			$scope.authenticated 	= response.authenticated;
@@ -11,7 +11,10 @@ angular.module('mainController', [])
 		// Log the user out and refresh home screen
 		$scope.logout = function() {
 			$http.get('/logout').success(function(response) {
-				$route.reload();
+				// Use window.location to force the ENTIRE page to reload (header too)
+				$location.path('/');
+				window.location = '/';
+      			window.location.reload();
 			});
 		}
 

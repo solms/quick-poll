@@ -59,7 +59,7 @@ module.exports = function(app, passport) {
 		if(req.isAuthenticated()) {
 			req.logout();
 		}
-		res.status(200).send('/');
+		res.sendStatus(200);
 	})
 
 	// Add a new poll to the database

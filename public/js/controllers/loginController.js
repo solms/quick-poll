@@ -7,8 +7,10 @@ angular.module('loginController', [])
 				username: $scope.username,
 				password: $scope.password
 			}).then(function() { // Success
-				// Redirect to home page
+				// Use window.location to force the ENTIRE page to reload (header too)
 				$location.path('/');
+				window.location = '/';
+      			window.location.reload();
 			}, function() {
 				// Failure
 				$scope.problem = 'The credentials provided do not match, or do not exist.';

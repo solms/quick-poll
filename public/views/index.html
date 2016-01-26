@@ -33,8 +33,11 @@
 
 </head>
 <body ng-app="pollApp" ng-controller="MainCtrl">
-	<div id="banner">
-		<a href="/"><h1>Quick-Poll</h1></a>
+	<div id="banner" class="container">
+		<p ng-show="authenticated" id="active-user">
+			Hi there, <strong>{{ active_user }}</strong>. <a href="" ng-click="logout()">(log out)</a>
+		</p>
+		<a href="/" target="_self"><h1>Quick-Poll</h1></a>
 		<p>The simple way to gather opinions.</p>
 	</div>
 	
