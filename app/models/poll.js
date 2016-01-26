@@ -10,7 +10,7 @@ module.exports = mongoose.model('Poll', {
 	question: { type: String, default: '' },
 	options	: [{
 		description: 	{ type: String },
-		votes: 			{ type: Number, default: 7 }
+		votes: 			{ type: Number }
 	}],
 	created	: { type: String, default: datestamp },
 	voted	: [String]

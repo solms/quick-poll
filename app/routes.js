@@ -113,6 +113,22 @@ module.exports = function(app, passport) {
 		})
 	})
 
+	// Check if user owns poll he/she is looking at
+	// Data format: { poll_id }
+	app.post('/api/owner', ensureAuthenticated, function(req, res) {
+		console.log('### Trying to check poll owner. ###');
+		Poll.findOne({ _id: req.body.poll_id }, function(err, doc) {
+			if(doc != null) {
+				if(doc.user == req.user.id) {
+					console.log('User owns this poll.');
+					res.sendStatus(200);
+				} else {
+					console.log('User does not own this poll.');
+				}
+			}
+		})
+	})
+
 	// Delete poll from database
 	app.post('/api/delete-poll', ensureAuthenticated, function(req, res) {
 		Poll.remove({

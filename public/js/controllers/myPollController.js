@@ -1,8 +1,14 @@
 angular.module('myPollController', [])
 	.controller('MyPollCtrl', ['$http', '$scope', '$location', function($http, $scope, $location) {
+		$scope.owner = false;
 		// Check if the user is logged in
 		$http.get('/api/auth').success(function(response) {
 			$scope.authenticated 	= response.authenticated;
+			// Check if the user is the owner of the poll
+			$http.post('/api/owner', { poll_id: $location.search().id })
+				.success(function(response) {
+					$scope.owner = true;
+				});
 		});
 
 		$http.post('/api/poll', { id: $location.search().id })
