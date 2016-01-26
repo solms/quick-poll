@@ -34,6 +34,7 @@ input {
 .back {
 	font-size: 1.2em;
 	text-align: left;
+	margin: 15px;
 }
 .back a:hover {
 	font-style: normal !important;
